@@ -1,32 +1,35 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"os"
 )
 
 func main() {
-	first := make(map[string]string)
-	second := make(map[string]string)
+	in := bufio.NewReader(os.Stdin)
 
 	var n int
-	fmt.Scan(&n)
+	fmt.Fscan(in, &n)
+
+	first := make(map[string]string, n)
+	second := make(map[string]string, n)
 
 	for i := 0; i < n; i++ {
 		var firstWord string
 		var secondWord string
-		fmt.Scan(&firstWord)
-		fmt.Scan(&secondWord)
+		fmt.Fscan(in, &firstWord, &secondWord)
 
 		first[firstWord] = secondWord
 		second[secondWord] = firstWord
 	}
 
 	var word string
-	fmt.Scan(&word)
+	fmt.Fscan(in, &word)
 
 	if len(first[word]) != 0 {
-		fmt.Println(first[word])
+		fmt.Print(first[word])
 	} else {
-		fmt.Println(second[word])
+		fmt.Print(second[word])
 	}
 }
