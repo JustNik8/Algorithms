@@ -7,7 +7,7 @@ import (
 )
 
 // Пока не решил. Здесь неправильный код!
-
+// https://contest.yandex.ru/contest/27844/problems/G/
 func main() {
 	reader := bufio.NewReader(os.Stdin)
 	var squareHeight, squareWidth, tileCnt uint64
