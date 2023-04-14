@@ -8,6 +8,7 @@ import (
 
 var maxHeight = 0
 
+// https://contest.yandex.ru/contest/28069/problems/A/
 func main() {
 	reader := bufio.NewReader(os.Stdin)
 

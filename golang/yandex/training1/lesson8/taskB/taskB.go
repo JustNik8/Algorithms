@@ -6,6 +6,7 @@ import (
 	"os"
 )
 
+// https://contest.yandex.ru/contest/28069/problems/B/
 func main() {
 	reader := bufio.NewReader(os.Stdin)
 
