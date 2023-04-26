@@ -70,7 +70,6 @@ func add(tree *[]interface{}, x int) {
 			add(&slice, x)
 		}
 	}
-
 }
 
 func initTree(tree *[]interface{}, root int) {
