@@ -1,22 +1,26 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"os"
 	"sort"
 )
 
-// TL
-func main() {
-	var n int
-	fmt.Scan(&n)
+type empty struct{}
 
-	diegoCardSet := make(map[int]bool)
-	var collection []int
+func main() {
+	reader := bufio.NewReader(os.Stdin)
+	var n int
+	fmt.Fscan(reader, &n)
+
+	cardSet := make(map[int]empty)
+	collection := make([]int, 0, n)
 	for i := 0; i < n; i++ {
 		var num int
-		fmt.Scan(&num)
-		if _, ok := diegoCardSet[num]; !ok {
-			diegoCardSet[num] = true
+		fmt.Fscan(reader, &num)
+		if _, ok := cardSet[num]; !ok {
+			cardSet[num] = empty{}
 			collection = append(collection, num)
 		}
 	}
@@ -24,14 +28,11 @@ func main() {
 	sort.Ints(collection)
 
 	var k int
-	fmt.Scan(&k)
-	buyers := make([]int, k)
+	fmt.Fscan(reader, &k)
 
-	for i := range buyers {
-		fmt.Scan(&buyers[i])
-	}
-
-	for _, card := range buyers {
+	for i := 0; i < k; i++ {
+		var card int
+		fmt.Fscan(reader, &card)
 		fmt.Println(binarySearch(&collection, card))
 	}
 }
