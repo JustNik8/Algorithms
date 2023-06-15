@@ -5,7 +5,7 @@ import "fmt"
 func main() {
 
 }
-gi
+
 func summaryRanges(nums []int) []string {
 	size := len(nums)
 	if size == 0 {
