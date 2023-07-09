@@ -5,9 +5,9 @@ func main() {
 }
 
 func search(nums []int, target int) int {
-	left, right := 0, len(nums)
+	left, right := 0, len(nums)-1
 
-	for left < right {
+	for left <= right {
 		m := (right + left) / 2
 
 		if nums[m] == target {
@@ -15,7 +15,7 @@ func search(nums []int, target int) int {
 		}
 
 		if nums[m] > target {
-			right = m
+			right = m - 1
 		} else {
 			left = m + 1
 		}
