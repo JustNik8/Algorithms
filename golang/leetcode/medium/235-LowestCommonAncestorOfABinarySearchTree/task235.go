@@ -10,7 +10,7 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
-// This solution much better. Uses features of BST
+// This solution much better. Uses feature of BST
 func lowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
 	if p.Val < root.Val && q.Val < root.Val {
 		return lowestCommonAncestor(root.Left, p, q)
