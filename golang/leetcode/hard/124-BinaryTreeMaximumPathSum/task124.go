@@ -1,17 +1,17 @@
 package main
 
+import "math"
+
 func main() {
 
 }
 
-/**
- * Definition for a binary tree node.
- * type TreeNode struct {
- *     Val int
- *     Left *TreeNode
- *     Right *TreeNode
- * }
- */
+type TreeNode struct {
+	Val   int
+	Left  *TreeNode
+	Right *TreeNode
+}
+
 func maxPathSum(root *TreeNode) int {
 	maxSum := math.MinInt32
 	pathSum(root, &maxSum)
