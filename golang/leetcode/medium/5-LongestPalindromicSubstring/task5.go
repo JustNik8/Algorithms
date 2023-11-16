@@ -1,13 +1,37 @@
 package main
 
-import "fmt"
-
 func main() {
-	mathings := map[uint8]uint8{
-		'(': ')',
+}
+
+// Более красивое решение
+func longestPalindromeClear(s string) string {
+	maxLeft, maxRight := 0, 0
+	size := len(s)
+
+	for i := 0; i < size; i++ {
+		maxLeft, maxRight = calculate(s, i, i, maxLeft, maxRight)
+		maxLeft, maxRight = calculate(s, i, i+1, maxLeft, maxRight)
 	}
 
-	fmt.Println(mathings)
+	return s[maxLeft : maxRight+1]
+}
+
+func calculate(s string, left, right, maxLeft, maxRight int) (int, int) {
+	size := len(s)
+	for left >= 0 && right < size {
+		if s[left] != s[right] {
+			break
+		}
+
+		if right-left+1 > maxRight-maxLeft+1 {
+			maxLeft, maxRight = left, right
+		}
+
+		left--
+		right++
+	}
+
+	return maxLeft, maxRight
 }
 
 func longestPalindrome(s string) string {
