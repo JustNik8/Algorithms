@@ -1,4 +1,6 @@
-func rob(nums []int) int {
+package main
+
+func robSlice(nums []int) int {
 	n := len(nums)
 
 	dp := make([]int, n+2)
