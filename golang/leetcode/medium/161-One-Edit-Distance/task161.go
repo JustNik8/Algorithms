@@ -1,45 +1,35 @@
 package main
 
-func LengthOfLongestSubstringTwoDistinct(s string) int {
-	counts := make(map[byte]int)
-	diffCnt := 0
-	maxLen := 0
+// IsOneEditDistance проверяется что редакционное расстояние между строками == 1
+func IsOneEditDistance(s string, t string) bool {
+	// В s храним наибольшую по длинне строку.
+	if len(s) < len(t) {
+		s, t = t, s
+	}
 
-	left, right := 0, 0
-	for right < len(s) {
-		if diffCnt <= 2 {
-			rightLetter := s[right]
-			cnt := counts[rightLetter]
+	// Если разница в длиннах больше 1, то сразу ясно, что редакционное расстояние != 1
+	n, m := len(s), len(t)
+	if n-m > 1 {
+		return false
+	}
 
-			if cnt == 0 {
-				diffCnt++
+	// Запускаем цикл по длинне наименьшей строки
+	for i := 0; i < m; i++ {
+		// Если текущие буквы не равны, то есть 2 варианта
+		if s[i] != t[i] {
+			// 1. Если длинна строк равна, то значит только замена возможна
+			// Поэтому проверяем последующие буквы
+			if n == m {
+				return s[i+1:] == t[i+1:]
 			}
-			counts[rightLetter] += 1
-
-			if diffCnt <= 2 {
-				maxLen = max(maxLen, right-left+1)
-			}
-
-			right++
-		} else {
-			leftLetter := s[left]
-			counts[leftLetter] -= 1
-
-			if counts[leftLetter] == 0 {
-				diffCnt--
-			}
-
-			left++
+			// Если же расстояния не равны, то мы не можем заменить букву =>
+			// Нужно ее удалять и проверять остальные буквы
+			return s[i+1:] == t[i:]
 		}
 	}
 
-	return maxLen
-}
-
-func max(a, b int) int {
-	if a > b {
-		return a
-	} else {
-		return b
-	}
+	// Если же так получилось, что все буквы равны, то остается последний вариант:
+	// Добавление буквы. Так как по условию строки с одинаковой длинной должны возвращать false,
+	// То нужно проверить, t меньше s на единицу.
+	return n == m+1
 }
